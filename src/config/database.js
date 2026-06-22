@@ -1,0 +1,21 @@
+const { Pool } = require("pg");
+require("dotenv").config();
+
+const pool = new Pool({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: "postgres" || process.env.DB_USER,
+  password: process.env.DB_PASSWORD || "root",
+  database: process.env.DB_NAME,
+  connectionTimeoutMillis: 5000,
+});
+
+pool
+  .connect()
+  .then((client) => {
+    console.log("Banco PostgreSQL conectado com sucesso!");
+    client.release();
+  })
+  .catch((erro) => console.error("Erro ao conectar no banco:", erro.message));
+
+module.exports = pool;
