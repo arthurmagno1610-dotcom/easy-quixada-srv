@@ -36,13 +36,8 @@ function salvarImagem(imagem) {
 router.get('/', async (req, res) => {
     try {
         const resultado = await pool.query(`
-            SELECT 
-                estabelecimento.*,
-                categoria.nome_categoria
-            FROM estabelecimento
-            INNER JOIN categoria
-                ON estabelecimento.id_categoria = categoria.id_categoria
-            ORDER BY estabelecimento.id_estabelecimento
+            ALTER TABLE estabelecimento
+ADD COLUMN site VARCHAR(255);
         `);
 
         res.json(resultado.rows);
