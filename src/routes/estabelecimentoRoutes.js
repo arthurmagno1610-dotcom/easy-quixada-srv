@@ -37,8 +37,9 @@ router.get("/", async (req, res) => {
   try {
     const resultado = await pool.query(`
             ALTER TABLE estabelecimento
-ADD COLUMN instagram VARCHAR(255);
-        `);
+            ADD COLUMN facebook VARCHAR(255),
+            ADD COLUMN whatsapp VARCHAR(255);
+            `);
 
     res.json(resultado.rows);
   } catch (erro) {
