@@ -36,10 +36,14 @@ function salvarImagem(imagem) {
 router.get("/", async (req, res) => {
   try {
     const resultado = await pool.query(`
-            ALTER TABLE estabelecimento
-            ADD COLUMN facebook VARCHAR(255),
-            ADD COLUMN whatsapp VARCHAR(255);
-            `);
+            SELECT 
+                estabelecimento.*,
+                categoria.nome_categoria
+            FROM estabelecimento
+            INNER JOIN categoria
+                ON estabelecimento.id_categoria = categoria.id_categoria
+            ORDER BY estabelecimento.id_estabelecimento
+        `);
 
     res.json(resultado.rows);
   } catch (erro) {
