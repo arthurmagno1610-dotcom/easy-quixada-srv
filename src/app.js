@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
+const app = express();
 
 const categoriaRoutes = require("./routes/categoriaRoutes");
 const usuarioRoutes = require("./routes/usuarioRoutes");
@@ -8,16 +9,22 @@ const estabelecimentoRoutes = require("./routes/estabelecimentoRoutes");
 const avaliacaoRoutes = require("./routes/avaliacaoRoutes");
 const comentarioRoutes = require("./routes/comentarioRoutes");
 
-const app = express();
-const uploadsPath = path.join(__dirname, "..", "uploads");
+//const uploadsPath = path.join(__dirname, "..", "uploads");
 
-const uploadsDir = path.join(__dirname, "..", "..", "uploads");
+const uploadsDir = path.join(__dirname, "..", "uploads");
 
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
 
 app.use("/uploads", express.static(uploadsDir));
+
+console.log("-----------------------------");
+console.log(__dirname);
+console.log("uploadsDir");
+console.log(uploadsDir);
+console.log("-----------------------------");
+
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use((req, res, next) => {
