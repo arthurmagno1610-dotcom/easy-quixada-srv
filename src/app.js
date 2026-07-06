@@ -9,7 +9,7 @@ const estabelecimentoRoutes = require("./routes/estabelecimentoRoutes");
 const avaliacaoRoutes = require("./routes/avaliacaoRoutes");
 const comentarioRoutes = require("./routes/comentarioRoutes");
 
-//const uploadsPath = path.join(__dirname, "..", "uploads");
+const uploadsPath = path.join(__dirname, "..", "uploads");
 
 const uploadsDir = path.join(__dirname, "..", "uploads");
 
