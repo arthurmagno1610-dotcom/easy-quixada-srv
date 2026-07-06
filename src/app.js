@@ -11,10 +11,6 @@ const comentarioRoutes = require("./routes/comentarioRoutes");
 const app = express();
 const uploadsPath = path.join(__dirname, "..", "uploads");
 
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir, { recursive: true });
-}
-
 app.use("/uploads", express.static(uploadsDir));
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
@@ -22,7 +18,6 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type");
-
 
   if (req.method === "OPTIONS") {
     return res.sendStatus(204);
