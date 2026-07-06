@@ -4,11 +4,7 @@ const path = require("path");
 const pool = require("../config/database");
 
 const router = express.Router();
-const uploadsDir = path.join(__dirname, "..", "..", "uploads");
 
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir, { recursive: true });
-}
 
 function salvarImagem(imagem) {
   if (!imagem || typeof imagem !== "string") {
