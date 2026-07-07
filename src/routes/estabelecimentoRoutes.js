@@ -5,6 +5,9 @@ const pool = require("../config/database");
 
 const router = express.Router();
 
+const uploadsDir = path.join(__dirname, "..", "..", "uploads");
+const caminhoArquivo = path.join(uploadsDir, nomeArquivo);
+
 function salvarImagem(imagem) {
   if (!imagem || typeof imagem !== "string") {
     return imagem || "";
