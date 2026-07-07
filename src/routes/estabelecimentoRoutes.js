@@ -5,7 +5,6 @@ const pool = require("../config/database");
 
 const router = express.Router();
 
-
 function salvarImagem(imagem) {
   if (!imagem || typeof imagem !== "string") {
     return imagem || "";
@@ -24,9 +23,7 @@ function salvarImagem(imagem) {
   const extensao = resultado[1] === "jpeg" ? "jpg" : resultado[1];
   const conteudoBase64 = resultado[2];
   const nomeArquivo = `estabelecimento-${Date.now()}-${Math.round(Math.random() * 1e9)}.${extensao}`;
-  const caminhoArquivo = path.join(uploadsDir, nomeArquivo);
 
-  fs.mkdirSync(uploadsDir, { recursive: true });
   fs.writeFileSync(caminhoArquivo, Buffer.from(conteudoBase64, "base64"));
 
   return `/uploads/${nomeArquivo}`;
